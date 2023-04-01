@@ -11,4 +11,6 @@ public interface ReservationService {
     void removeReservation(UUID id);
     void modifyReservation(UUID id, Reservation New);
     List<Reservation> allReservation();
+    void printReservation(Reservation reservation);
+//    int compareTo(Reservation reservation1, Reservation reservation2);
 }

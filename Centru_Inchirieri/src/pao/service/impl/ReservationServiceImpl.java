@@ -32,4 +32,29 @@ public class ReservationServiceImpl implements ReservationService {
     public List<Reservation> allReservation() {
         return reservationList;
     }
+
+    @Override
+    public void printReservation(Reservation reservation) {
+        System.out.print("ID: ");
+        System.out.println(reservation.getId());
+
+        System.out.print("price: ");
+        System.out.println(reservation.getPrice());
+
+        System.out.print("Car:  ");
+        System.out.println(reservation.getCar().getId());
+
+        System.out.print("Start Date: ");
+        System.out.println(reservation.getStartDate());
+
+        System.out.print("End Date: ");
+        System.out.println(reservation.getEndDate());
+    }
+
+//    @Override
+//    public int compareTo(Reservation reservation) {
+//        return reservation1.getPrice().compareTo(reservation2.getPrice());
+//    }
+
+
 }

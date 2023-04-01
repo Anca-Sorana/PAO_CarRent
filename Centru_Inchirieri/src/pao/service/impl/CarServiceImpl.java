@@ -7,6 +7,7 @@ import pao.service.CarService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,14 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class CarServiceImpl implements CarService {
     private static List<Car> carList = new ArrayList<>();
+
+    @Override
+    public Optional<Car> getById(UUID id) {
+        return carList.stream()
+                .filter(elem -> elem.getId().equals(id))
+                .findAny();
+    }
+
     @Override
     public void addCar(Car car) {
         carList.add(car);
@@ -35,5 +44,23 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> allCars() {
         return carList;
+    }
+
+    @Override
+    public void printCar(Car car) {
+        System.out.print("ID: ");
+        System.out.println(car.getId());
+
+        System.out.print("Type: ");
+        System.out.println(car.getType());
+
+        System.out.print("Color: ");
+        System.out.println(car.getColor());
+
+        System.out.print("Year: ");
+        System.out.println(car.getYear());
+
+        System.out.print("Seats Number: ");
+        System.out.println(car.getSeatsNumber());
     }
 }
