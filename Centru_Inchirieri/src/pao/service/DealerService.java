@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface DealerService {
-    void addDealer(Dealer car);
+    void addDealer(Dealer dealer);
     void removeDealer(UUID id);
     void modifyDealer(UUID id, Dealer New);
     List<Dealer> allDealer();

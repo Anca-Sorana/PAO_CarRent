@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface SubscriptionService {
-    void addSubscription(Subscription car);
+    void addSubscription(Subscription subscription);
     void removeSubscription(UUID id);
     void modifySubscription(UUID id, Subscription New);
     List<Subscription> allSubscription();
