@@ -1,6 +1,7 @@
 package pao.service;
 
 import pao.model.Client;
+import pao.model.Reservation;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,4 +14,7 @@ public interface ClientService {
     void modifyClient(UUID id, Client New);
     List<Client> allClients();
     void printClient(Client client);
+    void addReservation(UUID id, Reservation reservation);
+    void printClientById(UUID id);
+    void printClientList();
 }

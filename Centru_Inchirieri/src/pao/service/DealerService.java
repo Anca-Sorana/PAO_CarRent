@@ -15,6 +15,6 @@ public interface DealerService {
     List<Dealer> allDealer();
     void printDealer(Dealer dealer);
     void addCar(UUID id, Car car);
-    void printList();
+    void printDealerById(UUID id);
 
 }

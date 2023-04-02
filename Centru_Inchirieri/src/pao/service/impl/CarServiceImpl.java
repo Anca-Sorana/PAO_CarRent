@@ -63,4 +63,14 @@ public class CarServiceImpl implements CarService {
         System.out.print("Seats Number: ");
         System.out.println(car.getSeatsNumber());
     }
+
+    @Override
+    public void printCarList() {
+        for(int i = 0; i < carList.size(); i++) {
+            printCar(carList.get(i));
+        }
+        if(carList.size() == 0) {
+            System.out.println("No cars left!");
+        }
+    }
 }

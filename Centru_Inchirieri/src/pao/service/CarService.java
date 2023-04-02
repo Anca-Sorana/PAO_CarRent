@@ -13,4 +13,5 @@ public interface CarService {
     void modifyCar(UUID id, Car New);
     List<Car> allCars();
     void printCar(Car car);
+    void printCarList();
 }

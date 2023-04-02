@@ -89,9 +89,36 @@ public class DealerServiceImpl implements DealerService {
     }
 
     @Override
-    public void printList() {
-        for(var elem : dealerList) {
-            printDealer(elem);
+    public void printDealerById(UUID id) {
+        Optional<Dealer> dealer = getById(id);
+        System.out.print("ID: ");
+        System.out.println(dealer.get().getId());
+
+        System.out.print("First Name: ");
+        System.out.println(dealer.get().getFirst_name());
+
+        System.out.print("Last Name: ");
+        System.out.println(dealer.get().getLast_name());
+
+        System.out.print("Email: ");
+        System.out.println(dealer.get().getEmail());
+
+        System.out.print("Phone Number: ");
+        System.out.println(dealer.get().getPhone_number());
+
+        System.out.println("Dealer's Cars: ");
+        if(dealer.get().getDealerCars().isEmpty())
+            System.out.println("Null ");
+        else {
+            dealer.get().getDealerCars()
+                    .forEach(element -> System.out.println(element.getId()));
         }
+
+        System.out.print("Hire Date: ");
+        System.out.println(dealer.get().getHireDate());
+
+        System.out.print("Salary: ");
+        System.out.println(dealer.get().getSalary());
     }
+
 }

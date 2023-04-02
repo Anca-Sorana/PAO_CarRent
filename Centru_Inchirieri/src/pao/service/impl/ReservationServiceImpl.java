@@ -5,11 +5,20 @@ import pao.service.ReservationService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class ReservationServiceImpl implements ReservationService {
     private static List<Reservation> reservationList = new ArrayList<>();
+
+    @Override
+    public Optional<Reservation> getById(UUID id) {
+        return reservationList.stream()
+                .filter(elem -> elem.getId().equals(id))
+                .findAny();
+    }
+
     @Override
     public void addReservation(Reservation reservation) {
         reservationList.add(reservation);
@@ -51,10 +60,15 @@ public class ReservationServiceImpl implements ReservationService {
         System.out.println(reservation.getEndDate());
     }
 
-//    @Override
-//    public int compareTo(Reservation reservation) {
-//        return reservation1.getPrice().compareTo(reservation2.getPrice());
-//    }
+    @Override
+    public void printAllReservations() {
+        for(int i = 0; i < reservationList.size(); i++) {
+            printReservation(reservationList.get(i));
+        }
+        if(reservationList.size() == 0) {
+            System.out.println("No reservations left!");
+        }
+    }
 
 
 }
