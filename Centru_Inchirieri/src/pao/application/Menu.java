@@ -1,34 +1,61 @@
 package pao.application;
 
+
+import pao.exception.NotUUID;
 import pao.model.Car;
 import pao.model.Client;
 import pao.model.Dealer;
 import pao.model.Reservation;
 import pao.model.enums.Car_Type;
-import pao.service.*;
+import pao.repository.impl.CarRepositoryImpl;
+import pao.service.CarService;
+import pao.service.SubscriptionService;
+import pao.service.PremiumClientService;
+import pao.service.ClientService;
+import pao.service.DealerService;
+import pao.service.RentCenterService;
+import pao.service.ReservationService;
 import pao.service.impl.*;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
 
 public class Menu {
     private static Menu INSTANCE;
+//    private final CarService carService = new CarServiceImpl(new CarRepositoryImpl());
     Scanner console = new Scanner(System.in);
-    private CarService carService = new CarServiceImpl();
-    private ClientService clientService = new ClientServiceImpl();
-    private DealerService dealerService = new DealerServiceImpl();
-    private PremiumClientService premiumClientService = new PremiumClientServiceImpl();
-    private RentCenterService rentCenterService = new RentCenterServiceImpl();
-    private ReservationService reservationService = new ReservationServiceImpl();
-    private SubscriptionService subscriptionService = new SubscriptionServiceImpl();
+    private final CarService carService = new CarServiceImpl();
+    private final ClientService clientService = new ClientServiceImpl();
+    private final DealerService dealerService = new DealerServiceImpl();
+    private final PremiumClientService premiumClientService = new PremiumClientServiceImpl();
+    private final RentCenterService rentCenterService = new RentCenterServiceImpl();
+    private final ReservationService reservationService = new ReservationServiceImpl();
+    private final SubscriptionService subscriptionService = new SubscriptionServiceImpl();
+    private final static Pattern UUID_REGEX_PATTERN = Pattern.compile("^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$");
 
     public static Menu getInstance() {
         return (INSTANCE == null ? new Menu() : INSTANCE);
     }
 
     public void intro() {
+
+//        String intro = """
+//                Intro example
+//                """;
+//
+//        System.out.println(intro);
+//
+//        Car car1 = Car.builder()
+//                .id(UUID.randomUUID())
+//                .type(Car_Type.VOLVO)
+//                .color("blue")
+//                .year(2023)
+//                .seatsNumber(4)
+//                .build();
+//
+//        carService.addCar(car1);
         String intro = """
             Welcome to CarRent PAO! Please choose one of the following action:\n
             (Insert the number that correspond to the action you need to do)
@@ -247,7 +274,16 @@ public class Menu {
 
                     System.out.println("Please insert the Dealer's ID");
 
-                    UUID dealerId = UUID.fromString(console.next());
+                    //UUID dealerId = UUID.fromString(console.next());
+                    String dealerIDtest = console.next();
+                    UUID dealerId = UUID.randomUUID();
+
+                    if(!UUID_REGEX_PATTERN.matcher(dealerIDtest).matches()) try {
+                        throw new NotUUID("Invalid number");
+                    } catch (NotUUID e) {
+                        throw new RuntimeException(e);
+                    }
+                    else dealerId = UUID.fromString(dealerIDtest);
 //                UUID dealerId = d;
 //                System.out.println(dealerId);
 
@@ -260,7 +296,16 @@ public class Menu {
             if(option == 4) {
 
                 System.out.println("Insert the Client's ID: ");
-                UUID clientID1 = UUID.fromString(console.next());
+                String clientIDtest = console.next();
+                UUID clientID1 = UUID.randomUUID();
+
+                if(!UUID_REGEX_PATTERN.matcher(clientIDtest).matches()) try {
+                    throw new NotUUID("Invalid number");
+                } catch (NotUUID e) {
+                    throw new RuntimeException(e);
+                }
+                else clientID1 = UUID.fromString(clientIDtest);
+
 
                 if (clientService.getById(clientID1).isPresent()) {
 
@@ -381,7 +426,16 @@ public class Menu {
             }
             if(option == 7) {
                 System.out.println("Insert the ID for the Car you want to delete:");
-                UUID carID = UUID.fromString(console.next());
+                //UUID carID = UUID.fromString(console.next());
+                String carIDtest = console.next();
+                UUID carID = UUID.randomUUID();
+
+                if(!UUID_REGEX_PATTERN.matcher(carIDtest).matches()) try {
+                    throw new NotUUID("Invalid number");
+                } catch (NotUUID e) {
+                    throw new RuntimeException(e);
+                }
+                else carID = UUID.fromString(carIDtest);
                 if (carService.getById(carID).isPresent()) {
                     carService.removeCar(carID);
                     carService.printCarList();
@@ -393,7 +447,17 @@ public class Menu {
             if(option == 8) {
 
                 System.out.println("Insert the ID for the Client you want to delete:");
-                UUID clientID = UUID.fromString(console.next());
+//                UUID clientID = UUID.fromString(console.next());
+                String clientIDtest = console.next();
+                UUID clientID = UUID.randomUUID();
+
+                if(!UUID_REGEX_PATTERN.matcher(clientIDtest).matches()) try {
+                    throw new NotUUID("Invalid number");
+                } catch (NotUUID e) {
+                    throw new RuntimeException(e);
+                }
+                else clientID = UUID.fromString(clientIDtest);
+
                 if (clientService.getById(clientID).isPresent()) {
                     clientService.removeClient(clientID);
                     clientService.printClientList();
