@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import pao.model.abstracts.Person;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
 @SuperBuilder
 @Getter
 @Setter
-public class Client extends Person {
+sealed public class Client extends Person permits PremiumClient {
     private String type; //persoana fizica sau juridica
     private List<Reservation> history;
 

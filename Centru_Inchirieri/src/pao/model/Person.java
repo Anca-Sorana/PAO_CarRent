@@ -1,7 +1,9 @@
-package pao.model.abstracts;
+package pao.model;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import pao.model.Client;
+import pao.model.Dealer;
 
 import java.util.UUID;
 @Getter
@@ -11,7 +13,7 @@ import java.util.UUID;
 @SuperBuilder
 @ToString
 @EqualsAndHashCode
-public abstract class Person {
+sealed public abstract class Person permits Client, Dealer {
     private UUID id;
     private String first_name;
     private String last_name;

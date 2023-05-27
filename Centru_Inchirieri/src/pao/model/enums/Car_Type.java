@@ -1,11 +1,12 @@
 package pao.model.enums;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import pao.model.Car;
 
 import java.util.Arrays;
 
 @Getter
-
 public enum Car_Type {
     VOLVO("volvo"),
     MERCEDES("mercedes"),

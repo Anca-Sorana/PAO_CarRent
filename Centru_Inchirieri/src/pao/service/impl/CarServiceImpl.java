@@ -2,7 +2,9 @@ package pao.service.impl;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import pao.model.Car;
+import pao.repository.CarRepository;
 import pao.service.CarService;
 
 import java.util.ArrayList;
@@ -12,9 +14,10 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Getter
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class CarServiceImpl implements CarService {
     private static List<Car> carList = new ArrayList<>();
+//    private final CarRepository carRepository;
 
     @Override
     public Optional<Car> getById(UUID id) {
