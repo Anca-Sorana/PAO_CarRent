@@ -27,3 +27,8 @@ For example, this platform allow customers to rent different cars and make reser
 - Delete a Client.
 - Sort the Reservations by price for the first client registered.
 - Print all the Cars from the first Dealer registered ordered in descending order by their year of fabrication.
+
+## New Updates
+- Added sealed classes
+- Created a database
+- Created some exceptions for invalid inputs for UUID ID
